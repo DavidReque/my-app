@@ -160,13 +160,13 @@ public class EmpleadosView extends Div implements BeforeEnterObserver, Empleados
                     this.empleado.setNombre(nombre.getValue());
                     this.empleado.setApellido(apellido.getValue());
                     this.empleado.setEmail(email.getValue());
-                    
+                    this.empleado.setDepartamentoID(Integer.parseInt(departamentoid.getValue()));
                     this.controlador.agregarEmpleado(empleado);
                 } else {
                     this.empleado.setNombre(nombre.getValue());
                     this.empleado.setApellido(apellido.getValue());
                     this.empleado.setEmail(email.getValue());
-                    
+                    this.empleado.setDepartamentoID(Integer.parseInt(departamentoid.getValue()));
                     this.controlador.editarEmpleado(empleado);
                 }
 
