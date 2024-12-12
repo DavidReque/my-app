@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import hn.proyectofinal.grupoone.data.EmpleadosResponse;
 import hn.proyectofinal.grupoone.data.Empleados;
+import hn.proyectofinal.grupoone.data.CertificacionesResponse;
 import hn.proyectofinal.grupoone.data.Cursos;
 import hn.proyectofinal.grupoone.data.CursosResponse;
 import okhttp3.ResponseBody;
@@ -187,4 +188,15 @@ public class DatabaseRepositoryImpl {
 			throw e;
 		}
 	}
+		
+		public CertificacionesResponse ConsultarCertificaciones() throws IOException {
+		   	 Call<CertificacionesResponse> call=client.getDatabase().ObtenerCertificaciones(); 
+		   	 Response<CertificacionesResponse> response =call.execute();//Aqui se produce la llamada
+		   	 if(response.isSuccessful()) {
+		   		 return response.body();		 
+		   	 }else {
+		   		 return null;
+		   	 }
+		   	 
+		   	}
 }

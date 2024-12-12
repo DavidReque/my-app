@@ -2,6 +2,7 @@ package hn.proyectofinal.grupoone.repository;
 
 
 import hn.proyectofinal.grupoone.data.EmpleadosResponse;
+import hn.proyectofinal.grupoone.data.CertificacionesResponse;
 import hn.proyectofinal.grupoone.data.Cursos;
 import hn.proyectofinal.grupoone.data.CursosResponse;
 import hn.proyectofinal.grupoone.data.Empleados;
@@ -73,4 +74,12 @@ public interface DatabaseRepository {
 		})
 		@DELETE("/pls/apex/gestionuth/appgestion/cursos")
 		Call<ResponseBody> eliminarCurso(@Query("id") Integer id);
+		
+		@Headers({
+		    "Accept: application/vnd.github.v3.full+json",
+		    "User-Agent: Sistema gestion de desarrollo humano"
+		})
+		@GET("/pls/apex/gestionuth/appgestion/certificaciones")//https://apex.oracle.com/
+		Call<CertificacionesResponse> ObtenerCertificaciones( );
+		//pls/apex/gestionuth/appgestion/empleados
 }
