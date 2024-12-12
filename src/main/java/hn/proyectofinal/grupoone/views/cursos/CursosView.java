@@ -75,6 +75,7 @@ public class CursosView extends Div implements BeforeEnterObserver, CursosViewMo
         createEditorLayout(splitLayout);
         add(splitLayout);
 
+        cursoid.setReadOnly(true);
         // Configure Grid
         grid.addColumn(Cursos::getCursoid).setHeader("ID").setAutoWidth(true);
         grid.addColumn(Cursos::getNombre).setHeader("Nombre").setAutoWidth(true);
