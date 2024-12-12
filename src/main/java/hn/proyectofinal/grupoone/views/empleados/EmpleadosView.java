@@ -149,6 +149,7 @@ public class EmpleadosView extends Div implements BeforeEnterObserver, Empleados
         //binder.bindInstanceFields(this);
 
         cancel.addClickListener(e -> {
+        	this.empleado = null;
             clearForm();
             refreshGrid();
         });
@@ -168,6 +169,7 @@ public class EmpleadosView extends Div implements BeforeEnterObserver, Empleados
                     this.empleado.setEmail(email.getValue());
                     this.empleado.setDepartamentoID(Integer.parseInt(departamentoid.getValue()));
                     this.controlador.editarEmpleado(empleado);
+                    System.out.print(empleado.getEmpleadosid());
                 }
 
                 clearForm();

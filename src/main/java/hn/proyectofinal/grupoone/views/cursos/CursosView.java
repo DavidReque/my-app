@@ -163,7 +163,7 @@ public class CursosView extends Div implements BeforeEnterObserver, CursosViewMo
                 } else {
                     this.curso.setNombre(nombre.getValue());
                     this.curso.setDescripcion(descripcion.getValue());
-                     this.curso.setDuracion(duracion.getValue());
+                    this.curso.setDuracion(duracion.getValue());
                     this.controlador.editarCurso(curso);
                 }
 
