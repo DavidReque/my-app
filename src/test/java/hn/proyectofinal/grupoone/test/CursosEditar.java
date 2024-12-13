@@ -22,8 +22,7 @@ public class CursosEditar {
 	    
 	    new WebDriverWait(driver, ofSeconds(30), ofSeconds(1)).until(titleIs("Cursos"));
 
-	    try {
-	        // Localiza el curso a editar (puedes identificarlo por un botón específico o fila en la lista)
+		// Localiza el curso a editar (puedes identificarlo por un botón específico o fila en la lista)
 	        WebElement filaCurso = driver.findElement(By.xpath("//vaadin-grid-cell-content[contains(.,'Desarrollo Personal')]"));
 	        filaCurso.click();
 
@@ -47,12 +46,12 @@ public class CursosEditar {
 	        // Espera para verificar si se muestra una notificación de éxito
 	        Thread.sleep(4000);
 
-	        WebElement notificacionExito = driver.findElement(By.xpath("//vaadin-notification-card[contains(.,'Curso actualizado exitosamente!')]"));
+	    try {
+	         WebElement notificacionExito = driver.findElement(By.xpath("//vaadin-notification-card[contains(.,'Curso actualizado exitosamente!')]"));
 
 	        String expected = "Curso actualizado exitosamente!";
 	        String actual = notificacionExito.getText();
 	        assertEquals(expected, actual);
-
 	    } catch (Exception e) {
 	        // Si ocurre algún problema, lanza un error
 	        assertTrue(e.getMessage() == null, "Ocurrió un problema durante la edición del curso.");
