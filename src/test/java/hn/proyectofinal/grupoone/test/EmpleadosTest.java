@@ -18,7 +18,7 @@ public class EmpleadosTest {
     @Test
     public void testGuardarEmpleado() throws InterruptedException {
         WebDriver driver = new ChromeDriver();
-        driver.get("http://localhost:8080/empleados");
+        driver.get("http://localhost:8080");
 
         new WebDriverWait(driver, ofSeconds(30)).until(titleIs("Empleados"));
 

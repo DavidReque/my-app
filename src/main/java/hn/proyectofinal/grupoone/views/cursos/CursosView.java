@@ -233,18 +233,22 @@ public class CursosView extends Div implements BeforeEnterObserver, CursosViewMo
 
         FormLayout formLayout = new FormLayout();
         cursoid = new TextField("Curso ID");
+        cursoid.setId("txtCursoid");
         cursoid.setClearButtonVisible(true);
         cursoid.setPrefixComponent(VaadinIcon.CLIPBOARD_USER.create());
         
         nombre = new TextField("Nombre");
+        nombre.setId("txtNombreCurso");
         nombre.setClearButtonVisible(true);
         nombre.setPrefixComponent(VaadinIcon.CLIPBOARD_USER.create());
         
         descripcion = new TextField("Descripcion");
+        descripcion.setId("txtDescripcion");
         descripcion.setClearButtonVisible(true);
         descripcion.setPrefixComponent(VaadinIcon.CLIPBOARD_USER.create());
         
         duracion = new IntegerField("Duración (Horas)");  // Usar IntegerField para duracion
+        duracion.setId("txtDuracion");
         duracion.setMin(1);  // Establecer un valor mínimo
         duracion.setClearButtonVisible(true);
         duracion.setPrefixComponent(VaadinIcon.CLIPBOARD_USER.create());
@@ -261,7 +265,11 @@ public class CursosView extends Div implements BeforeEnterObserver, CursosViewMo
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.setClassName("button-layout");
         cancel.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+        cancel.setId("btnCancelar");
+        
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        save.setId("btnGuardar");
+        
         buttonLayout.add(save, cancel);
         editorLayoutDiv.add(buttonLayout);
     }
