@@ -39,6 +39,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
+import hn.proyectofinal.grupoone.service.ReportGenerator;
+import hn.proyectofinal.grupoone.data.EmpleadosReport;
 
 @PageTitle("Cursos")
 @Route("master-detail/:cursosID?/:action?(edit)")
@@ -75,7 +77,6 @@ public class CursosView extends Div implements BeforeEnterObserver, CursosViewMo
         createEditorLayout(splitLayout);
         add(splitLayout);
 
-        cursoid.setReadOnly(true);
         // Configure Grid
         grid.addColumn(Cursos::getCursoid).setHeader("ID").setAutoWidth(true);
         grid.addColumn(Cursos::getNombre).setHeader("Nombre").setAutoWidth(true);
@@ -104,6 +105,7 @@ public class CursosView extends Div implements BeforeEnterObserver, CursosViewMo
         
         GridMenuItem<Cursos> generateReport = menu.addItem("Generar reporte", event -> {
         	// generar el reporte
+        	generarReporte();
         });
         
         GridMenuItem<Cursos> delete = menu.addItem("Eliminar Curso", event -> {
@@ -163,7 +165,7 @@ public class CursosView extends Div implements BeforeEnterObserver, CursosViewMo
                 } else {
                     this.curso.setNombre(nombre.getValue());
                     this.curso.setDescripcion(descripcion.getValue());
-                    this.curso.setDuracion(duracion.getValue());
+                     this.curso.setDuracion(duracion.getValue());
                     this.controlador.editarCurso(curso);
                 }
 
@@ -234,22 +236,18 @@ public class CursosView extends Div implements BeforeEnterObserver, CursosViewMo
 
         FormLayout formLayout = new FormLayout();
         cursoid = new TextField("Curso ID");
-        cursoid.setId("txtCursoid");
         cursoid.setClearButtonVisible(true);
         cursoid.setPrefixComponent(VaadinIcon.CLIPBOARD_USER.create());
         
         nombre = new TextField("Nombre");
-        nombre.setId("txtNombreCurso");
         nombre.setClearButtonVisible(true);
         nombre.setPrefixComponent(VaadinIcon.CLIPBOARD_USER.create());
         
         descripcion = new TextField("Descripcion");
-        descripcion.setId("txtDescripcion");
         descripcion.setClearButtonVisible(true);
         descripcion.setPrefixComponent(VaadinIcon.CLIPBOARD_USER.create());
         
         duracion = new IntegerField("Duración (Horas)");  // Usar IntegerField para duracion
-        duracion.setId("txtDuracion");
         duracion.setMin(1);  // Establecer un valor mínimo
         duracion.setClearButtonVisible(true);
         duracion.setPrefixComponent(VaadinIcon.CLIPBOARD_USER.create());
@@ -266,11 +264,7 @@ public class CursosView extends Div implements BeforeEnterObserver, CursosViewMo
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.setClassName("button-layout");
         cancel.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
-        cancel.setId("btnCancelar");
-        
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        save.setId("btnGuardar");
-        
         buttonLayout.add(save, cancel);
         editorLayoutDiv.add(buttonLayout);
     }
@@ -286,6 +280,14 @@ public class CursosView extends Div implements BeforeEnterObserver, CursosViewMo
         grid.deselectAll();
         controlador.consultarCursos();
         clearForm();
+    }
+    
+    private void generarReporte() {
+    	mostrarMensajeExito("Generando Reporte de Empleados...");
+    	ReportGenerator generador = new ReportGenerator();
+    	EmpleadosReport datasource = new EmpleadosReport();
+    	datasource.setItems(null);
+    	
     }
 
     private void clearForm() {

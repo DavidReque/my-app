@@ -1,0 +1,108 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="Waves_Landscape_Table_Based" language="java" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="cd3df208-1f01-461e-9efe-3ee6c21a9dcb">
+	<property name="template.engine" value="tabular_template"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Title" fontName="Arial" fontSize="26.0" bold="true"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18.0"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12.0" bold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12.0"/>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH_Label" style="SubTitle" mode="Opaque" forecolor="#FFFFFF" backcolor="#666666" fontSize="16.0" bold="true">
+		<box leftPadding="2" style="SubTitle"/>
+	</style>
+	<dataset name="tableDataset" uuid="542026cd-e5d2-4206-8cde-8ea180dbf17a">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<query language="sql"><![CDATA[]]></query>
+	</dataset>
+	<parameter name="LOGO_IMG" class="java.lang.String"/>
+	<query language="sql"><![CDATA[]]></query>
+	<field name="NombreCompleto" class="java.lang.String">
+		<description><![CDATA[Nombre del Empleado]]></description>
+	</field>
+	<field name="Correo" class="java.lang.String">
+		<description><![CDATA[Correo del Empleado]]></description>
+	</field>
+	<field name="DepartamentoID" class="java.lang.Integer">
+		<description><![CDATA[ID del Departamento al que pertenece el empleado]]></description>
+	</field>
+	<background height="575" splitType="Stretch">
+		<element kind="image" uuid="64ca4020-b604-4de9-9ed1-921b74cfd593" positionType="Float" x="-20" y="66" width="105" height="409" vImageAlign="Bottom">
+			<expression><![CDATA["waves.jpg"]]></expression>
+		</element>
+		<element kind="frame" uuid="c43bcaab-2004-4343-bc81-ffa62c8e2de6" mode="Opaque" x="-20" y="475" width="105" height="100" backcolor="#666666">
+			<element kind="textField" uuid="556559f9-238c-4b08-acd0-f8cd3e750500" x="0" y="0" width="104" height="73" forecolor="#000000" fontSize="58.0" bold="true" hTextAlign="Center" vTextAlign="Middle" style="Column header">
+				<expression><![CDATA[$V{PAGE_NUMBER}]]></expression>
+			</element>
+			<element kind="textField" uuid="a0923ef1-0a31-42cd-80c8-b714e4c8a4af" x="0" y="77" width="104" height="20" forecolor="#000000" fontSize="16.0" evaluationTime="Report" bold="false" hTextAlign="Center" style="Column header">
+				<expression><![CDATA[$V{PAGE_NUMBER}]]></expression>
+				<box leftPadding="4" rightPadding="4" style="Column header"/>
+			</element>
+			<element kind="line" uuid="1022d58b-595a-4931-810c-2820c25386ac" mode="Transparent" x="42" y="73" width="20" height="1" backcolor="#FFFFFF"/>
+		</element>
+	</background>
+	<title height="104" splitType="Stretch">
+		<element kind="staticText" uuid="77e5f357-287f-46bb-a2ca-428ae6225aa5" x="0" y="0" width="802" height="67" fontSize="54.0" bold="false" hTextAlign="Right" vTextAlign="Middle" style="Title">
+			<text><![CDATA[Gestión y Desarrollo Humano]]></text>
+		</element>
+		<element kind="staticText" uuid="8a2c39c1-4f53-44ef-be46-14e63a90b2f0" x="232" y="67" width="568" height="37" forecolor="#444548" fontSize="26.0" hTextAlign="Right" style="SubTitle">
+			<text><![CDATA[Listado de Empleados]]></text>
+		</element>
+		<element kind="image" uuid="7c4fc9a2-fc6f-468d-90a0-c87c7c435453" x="0" y="3" width="70" height="64">
+			<expression><![CDATA[$P{LOGO_IMG}]]></expression>
+		</element>
+	</title>
+	<columnHeader height="41">
+		<element kind="frame" uuid="53f289eb-9650-49cf-8525-a29536e5e748" mode="Opaque" x="0" y="0" width="801" height="41" forecolor="#18AFF0" backcolor="#18AFF0">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<element kind="staticText" uuid="1b629d13-d2dd-4e2b-b009-9f1bc4edc7b3" x="9" y="-1" width="271" height="39" fontSize="16.0" vTextAlign="Middle">
+				<text><![CDATA[Nombre Completo]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="c64e8133-4171-467d-a95f-a21e7348ef36" x="280" y="0" width="300" height="39" fontSize="16.0" hTextAlign="Left" vTextAlign="Middle">
+				<text><![CDATA[Correo]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="566f8aa8-8b0b-4dbb-be0b-3047e02d0137" x="580" y="0" width="221" height="39" fontSize="16.0" hTextAlign="Left" vTextAlign="Middle">
+				<text><![CDATA[DepartamentoID]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="296b641b-b492-4d26-b75f-28c45226bed1" x="-1" y="41" width="280" height="39" fontSize="13.0" vTextAlign="Middle">
+				<expression><![CDATA[$F{NombreCompleto}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="fecf5a0f-c3c8-4ff2-a633-5a4cea8232e2" x="283" y="41" width="294" height="39" fontSize="13.0" vTextAlign="Middle">
+				<expression><![CDATA[$F{Correo}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="ef7540ed-508b-432f-b128-51c0b2385f35" x="583" y="41" width="215" height="39" fontSize="13.0" vTextAlign="Middle">
+				<expression><![CDATA[$F{DepartamentoID}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+		</element>
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</columnHeader>
+	<detail>
+		<band height="41">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</detail>
+	<pageFooter height="39" splitType="Stretch">
+		<element kind="textField" uuid="cc434357-2dc8-4be7-ba91-1828360d1ee6" x="671" y="0" width="131" height="20" forecolor="#000000" fontSize="12.0" pattern="EEEEE dd MMMMM yyyy" bold="false" hTextAlign="Right" style="Column header">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="staticText" uuid="63d2e7ac-31ff-4ef3-949f-0d116927def9" x="96" y="0" width="267" height="20" fontSize="12.0">
+			<text><![CDATA[Empleados]]></text>
+		</element>
+	</pageFooter>
+	<summary height="200" splitType="Stretch">
+		<property name="local_mesure_unitheight" value="pixel"/>
+	</summary>
+</jasperReport>

@@ -27,17 +27,20 @@ import com.vaadin.flow.router.Menu;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
-
+import com.vaadin.flow.component.html.Anchor;
 import hn.proyectofinal.grupoone.controller.EmpleadosInteractor;
 import hn.proyectofinal.grupoone.controller.EmpleadosInteractorImpl;
 import hn.proyectofinal.grupoone.data.Empleados;
-
+import hn.proyectofinal.grupoone.data.EmpleadosReport;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
+import hn.proyectofinal.grupoone.service.ReportGenerator;
 
 @PageTitle("Empleados")
 @Route("/:empleadosID?/:action?(edit)")
@@ -100,7 +103,7 @@ public class EmpleadosView extends Div implements BeforeEnterObserver, Empleados
         GridContextMenu<Empleados> menu = grid.addContextMenu();
         
         GridMenuItem<Empleados> generateReport = menu.addItem("Generar Reporte", event -> {
-        	//generarReporte();
+         generarReporte();
         });
         
         GridMenuItem<Empleados> delete = menu.addItem("Eliminar Empleados", event -> {
@@ -186,7 +189,31 @@ public class EmpleadosView extends Div implements BeforeEnterObserver, Empleados
         controlador.consultarEmpleados();
     }
     
-    private Component createIcon(VaadinIcon vaadinIcon) {
+    private void generarReporte() {
+		mostrarMensajeExito("Generando Reporte de Empleados...");
+		ReportGenerator generador = new ReportGenerator();
+		EmpleadosReport datasource = new EmpleadosReport();
+		datasource.setItems(empleados);
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("LOGO_IMG", "UTH_LOGO.png");
+		
+		boolean generado = generador.generarReportePDF("listadoempleados", datasource, parameters);
+		if (generado) {
+			String ubicacion = generador.getUbicacionReporte();
+			Anchor url = new Anchor(ubicacion, "Abrir Reporte en el navegador");
+			url.setTarget("_blank");
+			
+			Notification notificacionReporte = new Notification(url);
+			notificacionReporte.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+			notificacionReporte.setPosition(Position.MIDDLE);
+			notificacionReporte.setDuration(15000);
+			notificacionReporte.open();
+		}else {
+			mostrarMensajeError("Algo salió mal al generar el reporte");
+		}
+	}
+
+	private Component createIcon(VaadinIcon vaadinIcon) {
         Icon icon = vaadinIcon.create();
         icon.getStyle().set("color", "var(--lumo-secondary-text-color)")
                 .set("margin-inline-end", "var(--lumo-space-s")
