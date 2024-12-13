@@ -35,7 +35,7 @@ import com.vaadin.flow.component.textfield.IntegerField;
 @Menu(order = 3, icon = LineAwesomeIconUrl.ADDRESS_BOOK_SOLID)
 
 public class ConsultarCertificacionesView extends Composite<VerticalLayout> implements ConsultarCertificacionesViewModel {
-
+//hola
 	private ComboBox<Certificaciones> certificacion;
 	private List<Certificaciones> certificaciones;
     private TextField txtNombre;
