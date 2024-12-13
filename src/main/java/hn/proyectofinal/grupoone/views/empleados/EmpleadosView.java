@@ -55,7 +55,7 @@ public class EmpleadosView extends Div implements BeforeEnterObserver, Empleados
     private TextField apellido;
     private TextField email;
     private TextField departamentoid;
-
+    
     private final Button cancel = new Button("Cancelar");
     private final Button save = new Button("Guardar");
 
@@ -74,6 +74,7 @@ public class EmpleadosView extends Div implements BeforeEnterObserver, Empleados
         createEditorLayout(splitLayout);
         add(splitLayout);
 
+        empleadosid.setReadOnly(true);
         // Configure Grid
         grid.addColumn(Empleados::getEmpleadosid).setHeader("empleadosid").setAutoWidth(true);
         grid.addColumn(Empleados::getNombre).setHeader("nombre").setAutoWidth(true);
@@ -148,6 +149,7 @@ public class EmpleadosView extends Div implements BeforeEnterObserver, Empleados
         //binder.bindInstanceFields(this);
 
         cancel.addClickListener(e -> {
+        	this.empleado = null;
             clearForm();
             refreshGrid();
         });
@@ -159,14 +161,15 @@ public class EmpleadosView extends Div implements BeforeEnterObserver, Empleados
                     this.empleado.setNombre(nombre.getValue());
                     this.empleado.setApellido(apellido.getValue());
                     this.empleado.setEmail(email.getValue());
-                    
+                    this.empleado.setDepartamentoID(Integer.parseInt(departamentoid.getValue()));
                     this.controlador.agregarEmpleado(empleado);
                 } else {
                     this.empleado.setNombre(nombre.getValue());
                     this.empleado.setApellido(apellido.getValue());
                     this.empleado.setEmail(email.getValue());
-                    
+                    this.empleado.setDepartamentoID(Integer.parseInt(departamentoid.getValue()));
                     this.controlador.editarEmpleado(empleado);
+                    System.out.print(empleado.getEmpleadosid());
                 }
 
                 clearForm();
@@ -258,7 +261,7 @@ public class EmpleadosView extends Div implements BeforeEnterObserver, Empleados
         departamentoid.setClearButtonVisible(true);
         departamentoid.setPrefixComponent(VaadinIcon.CLIPBOARD_USER.create());
 
-        formLayout.add(empleadosid, nombre, apellido, email);
+        formLayout.add(empleadosid, nombre, apellido, email, departamentoid);
 
         editorDiv.add(formLayout);
         createButtonLayout(editorLayoutDiv);
@@ -321,7 +324,7 @@ private void populateForm(Empleados value) {
 
         // Hacer solo lectura los campos ID y departamentoid
         empleadosid.setReadOnly(true);  // ID debe ser solo lectura
-        departamentoid.setReadOnly(true);  // Departamento ID debe ser solo lectura
+        //departamentoid.setReadOnly(true);  // Departamento ID debe ser solo lectura
 
         // Los demás campos siguen habilitados
         nombre.setReadOnly(false);
